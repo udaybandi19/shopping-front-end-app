@@ -1,0 +1,1188 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MediaCenter - Premium Electronics & Spares</title>
+    <!-- FontAwesome for Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <!-- Google Fonts: Roboto (clean, tech-friendly) -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- ========================================== -->
+    <!-- STYLES (style.css)                         -->
+    <!-- ========================================== -->
+    <style>
+      :root {
+        /* Mediacenter Inspired Palette */
+        --primary: #fed700; /* Vibrant Yellow */
+        --primary-hover: #e0be00;
+        --secondary: #333e48; /* Dark Blue/Gray */
+        --bg-light: #f5f5f5;
+        --bg-white: #ffffff;
+        --text-dark: #333333;
+        --text-muted: #666666;
+        --border-color: #e5e5e5;
+        --danger: #dd2a2a;
+        --success: #28a745;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Roboto", sans-serif;
+      }
+
+      body {
+        background-color: var(--bg-light);
+        color: var(--text-dark);
+        line-height: 1.6;
+      }
+
+      a {
+        text-decoration: none;
+        color: inherit;
+      }
+
+      button {
+        cursor: pointer;
+        font-family: inherit;
+      }
+
+      /* ----- Header ----- */
+      .top-bar {
+        background-color: var(--bg-white);
+        border-bottom: 1px solid var(--border-color);
+        font-size: 13px;
+        color: var(--text-muted);
+        padding: 8px 0;
+      }
+
+      
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      .top-bar .container {
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .main-header {
+        background-color: var(--secondary);
+        padding: 25px 0;
+        color: white;
+      }
+
+      .main-header .container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 30px;
+      }
+
+      .logo {
+        font-size: 28px;
+        font-weight: 900;
+        color: white;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .logo span {
+        color: var(--primary);
+      }
+
+      .search-bar {
+        flex: 1;
+        display: flex;
+        max-width: 600px;
+        background: white;
+        border-radius: 4px;
+        overflow: hidden;
+      }
+
+      .search-bar input {
+        flex: 1;
+        padding: 12px 15px;
+        border: none;
+        outline: none;
+        font-size: 15px;
+      }
+
+      .search-bar button {
+        background: var(--primary);
+        color: var(--text-dark);
+        border: none;
+        padding: 0 25px;
+        font-weight: bold;
+        font-size: 16px;
+        transition: background 0.3s;
+      }
+
+      .search-bar button:hover {
+        background: var(--primary-hover);
+      }
+
+      .header-actions {
+        display: flex;
+        align-items: center;
+        gap: 25px;
+      }
+
+      .cart-toggle {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        background: transparent;
+        color: white;
+        border: none;
+        font-size: 16px;
+        position: relative;
+      }
+
+      .cart-icon-wrapper {
+        position: relative;
+        font-size: 24px;
+      }
+
+      .cart-count {
+        position: absolute;
+        top: -8px;
+        right: -10px;
+        background: var(--primary);
+        color: var(--text-dark);
+        font-size: 12px;
+        font-weight: bold;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .cart-total-price {
+        font-weight: 700;
+        color: var(--primary);
+      }
+
+      /* ----- Navigation ----- */
+      .nav-bar {
+        background-color: var(--primary);
+        font-weight: 700;
+      }
+
+      .nav-list {
+        display: flex;
+        list-style: none;
+      }
+
+      .nav-list li a {
+        display: block;
+        padding: 15px 20px;
+        color: var(--text-dark);
+        text-transform: uppercase;
+        font-size: 14px;
+        transition: background 0.3s;
+      }
+
+      .nav-list li a:hover,
+      .nav-list li a.active {
+        background-color: rgba(0, 0, 0, 0.05);
+      }
+
+      /* ----- Main Layout ----- */
+      main {
+        padding: 40px 0;
+        min-height: 60vh;
+      }
+
+      .page-title {
+        font-size: 24px;
+        margin-bottom: 25px;
+        border-bottom: 2px solid var(--primary);
+        padding-bottom: 10px;
+        display: inline-block;
+      }
+
+      /* ----- Product Grid ----- */
+      .product-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 20px;
+      }
+
+      .product-card {
+        background: var(--bg-white);
+        border: 1px solid var(--border-color);
+        border-radius: 4px;
+        padding: 20px;
+        text-align: center;
+        transition:
+          box-shadow 0.3s,
+          transform 0.3s;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .product-card:hover {
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+        transform: translateY(-3px);
+      }
+
+      .product-badge {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        background: var(--primary);
+        color: var(--text-dark);
+        font-size: 12px;
+        font-weight: bold;
+        padding: 4px 8px;
+        border-radius: 3px;
+      }
+
+      .product-img-wrapper {
+        height: 180px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 15px;
+        cursor: pointer;
+      }
+
+      .product-img-wrapper img {
+        max-height: 100%;
+        max-width: 100%;
+        object-fit: contain;
+      }
+
+      .product-category {
+        font-size: 12px;
+        color: var(--text-muted);
+        text-transform: uppercase;
+        margin-bottom: 5px;
+      }
+
+      .product-title {
+        font-size: 15px;
+        font-weight: 500;
+        color: var(--secondary);
+        margin-bottom: 10px;
+        cursor: pointer;
+        flex-grow: 1;
+      }
+
+      .product-title:hover {
+        color: var(--primary-hover);
+      }
+
+      .product-price {
+        font-size: 20px;
+        font-weight: 700;
+        color: var(--text-dark);
+        margin-bottom: 15px;
+      }
+
+      .product-actions {
+        display: flex;
+        gap: 10px;
+      }
+
+      .btn {
+        padding: 10px 15px;
+        border: none;
+        border-radius: 20px;
+        font-weight: 700;
+        font-size: 13px;
+        transition: 0.3s;
+        text-transform: uppercase;
+        flex: 1;
+      }
+
+      .btn-primary {
+        background: var(--primary);
+        color: var(--text-dark);
+      }
+
+      .btn-primary:hover {
+        background: var(--secondary);
+        color: white;
+      }
+
+      .btn-icon {
+        background: var(--bg-light);
+        color: var(--secondary);
+        flex: 0 0 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .btn-icon:hover {
+        background: var(--secondary);
+        color: white;
+      }
+
+      /* ----- Cart Drawer ----- */
+      .cart-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 998;
+        opacity: 0;
+        visibility: hidden;
+        transition: 0.3s;
+      }
+
+      .cart-overlay.active {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .cart-drawer {
+        position: fixed;
+        top: 0;
+        right: -400px;
+        width: 400px;
+        height: 100%;
+        background: var(--bg-white);
+        z-index: 999;
+        box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+        transition: right 0.3s ease-in-out;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .cart-drawer.active {
+        right: 0;
+      }
+
+      .cart-header {
+        padding: 20px;
+        background: var(--secondary);
+        color: white;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .close-cart {
+        background: none;
+        border: none;
+        color: white;
+        font-size: 20px;
+      }
+
+      .cart-items {
+        flex: 1;
+        overflow-y: auto;
+        padding: 20px;
+      }
+
+      .cart-item {
+        display: flex;
+        gap: 15px;
+        border-bottom: 1px solid var(--border-color);
+        padding-bottom: 15px;
+        margin-bottom: 15px;
+      }
+
+      .cart-item img {
+        width: 70px;
+        height: 70px;
+        object-fit: contain;
+        border: 1px solid var(--border-color);
+        padding: 5px;
+      }
+
+      .cart-item-details {
+        flex: 1;
+      }
+
+      .cart-item-title {
+        font-size: 14px;
+        font-weight: 500;
+        margin-bottom: 5px;
+      }
+
+      .cart-item-price {
+        font-weight: 700;
+        color: var(--primary-hover);
+      }
+
+      .cart-item-qty {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-top: 10px;
+      }
+
+      .qty-btn {
+        width: 25px;
+        height: 25px;
+        background: var(--bg-light);
+        border: 1px solid var(--border-color);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .cart-footer {
+        padding: 20px;
+        border-top: 1px solid var(--border-color);
+        background: var(--bg-light);
+      }
+
+      .cart-total {
+        display: flex;
+        justify-content: space-between;
+        font-size: 18px;
+        font-weight: 700;
+        margin-bottom: 15px;
+      }
+
+      .checkout-btn {
+        width: 100%;
+        padding: 15px;
+        background: var(--primary);
+        color: var(--text-dark);
+        border: none;
+        font-weight: 700;
+        text-transform: uppercase;
+        border-radius: 4px;
+      }
+
+      /* ----- Quick View Modal ----- */
+      .modal-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.6);
+        z-index: 1000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        visibility: hidden;
+        transition: 0.3s;
+      }
+
+      .modal-overlay.active {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .modal-content {
+        background: white;
+        width: 90%;
+        max-width: 900px;
+        border-radius: 4px;
+        display: flex;
+        position: relative;
+        max-height: 90vh;
+        overflow-y: auto;
+      }
+
+      .close-modal {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        background: var(--bg-light);
+        border: none;
+        width: 35px;
+        height: 35px;
+        border-radius: 50%;
+        font-size: 18px;
+        z-index: 10;
+      }
+
+      .modal-gallery {
+        flex: 1;
+        padding: 30px;
+        border-right: 1px solid var(--border-color);
+        display: flex;
+        flex-direction: column;
+      }
+
+      .main-image {
+        width: 100%;
+        height: 300px;
+        object-fit: contain;
+        margin-bottom: 20px;
+      }
+
+      .thumbnail-list {
+        display: flex;
+        gap: 10px;
+        justify-content: center;
+      }
+
+      .thumbnail {
+        width: 60px;
+        height: 60px;
+        border: 2px solid transparent;
+        cursor: pointer;
+        object-fit: contain;
+        padding: 5px;
+        background: var(--bg-light);
+      }
+
+      .thumbnail.active {
+        border-color: var(--primary);
+      }
+
+      .modal-details {
+        flex: 1;
+        padding: 30px;
+      }
+
+      .modal-category {
+        color: var(--text-muted);
+        font-size: 13px;
+        text-transform: uppercase;
+      }
+
+      .modal-title {
+        font-size: 22px;
+        margin: 10px 0;
+        color: var(--secondary);
+      }
+
+      .modal-price {
+        font-size: 28px;
+        font-weight: 700;
+        color: var(--text-dark);
+        margin-bottom: 20px;
+        padding-bottom: 20px;
+        border-bottom: 1px solid var(--border-color);
+      }
+
+      .modal-description {
+        color: var(--text-muted);
+        margin-bottom: 20px;
+        font-size: 14px;
+      }
+
+      .modal-specs {
+        list-style: none;
+        margin-bottom: 30px;
+      }
+
+      .modal-specs li {
+        font-size: 13px;
+        margin-bottom: 5px;
+        display: flex;
+      }
+
+      .modal-specs li strong {
+        width: 120px;
+        color: var(--text-dark);
+      }
+
+      /* ----- Service Form ----- */
+      .service-form {
+        background: white;
+        padding: 30px;
+        border-radius: 4px;
+        border: 1px solid var(--border-color);
+        max-width: 600px;
+        margin: 0 auto;
+      }
+
+      .form-group {
+        margin-bottom: 20px;
+      }
+
+      .form-group label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 500;
+      }
+
+      .form-group input,
+      .form-group select,
+      .form-group textarea {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid var(--border-color);
+        border-radius: 4px;
+        font-size: 14px;
+      }
+
+      .form-group textarea {
+        resize: vertical;
+        height: 100px;
+      }
+
+      /* Footer */
+      footer {
+        background: var(--secondary);
+        color: white;
+        text-align: center;
+        padding: 20px 0;
+        margin-top: 40px;
+      }
+
+      /* Responsive */
+      @media (max-width: 768px) {
+        .main-header .container {
+          flex-direction: column;
+        }
+        .search-bar {
+          max-width: 100%;
+          width: 100%;
+        }
+        .modal-content {
+          flex-direction: column;
+        }
+        .modal-gallery {
+          border-right: none;
+          border-bottom: 1px solid var(--border-color);
+        }
+        .cart-drawer {
+          width: 100%;
+          right: -100%;
+        }
+      }
+    </style>
+  </head>
+
+  <!-- ========================================== -->
+  <!-- HTML BODY (index.html)                     -->
+  <!-- ========================================== -->
+  <body>
+    <!-- Top Bar -->
+    <div class="top-bar">
+      <div class="container">
+        <div>Support: +91 98765 43210</div>
+        <div>Track Order | Store Locator | INR ₹</div>
+      </div>
+    </div>
+
+    <!-- Main Header -->
+    <header class="main-header">
+      <div class="container">
+        <div class="logo">
+          <i class="fa-solid fa-microchip"></i> Media<span>Center</span>
+        </div>
+
+        <div class="search-bar">
+          <input
+            type="text"
+            placeholder="Search for products, spares, or brands..."
+          />
+          <button><i class="fa-solid fa-magnifying-glass"></i></button>
+        </div>
+
+        <div class="header-actions">
+          <button class="cart-toggle" onclick="toggleCart()">
+            <div class="cart-icon-wrapper">
+              <i class="fa-solid fa-cart-shopping"></i>
+              <span class="cart-count" id="cart-count-badge">0</span>
+            </div>
+            <div>
+              <div style="font-size: 12px; font-weight: normal">My Cart</div>
+              <div class="cart-total-price" id="cart-total-display">₹0.00</div>
+            </div>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="nav-bar">
+      <div class="container">
+        <ul class="nav-list">
+          <li>
+            <a href="#" onclick="navigate('home')" id="nav-home" class="active"
+              >All Electronics</a
+            >
+          </li>
+          <li>
+            <a href="#" onclick="navigate('spares')" id="nav-spares"
+              >Spare Parts</a
+            >
+          </li>
+          <li>
+            <a href="#" onclick="navigate('service')" id="nav-service"
+              >Book Service</a
+            >
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Main Content Area -->
+    <main class="container">
+      <!-- Views will be injected here via JavaScript -->
+      <div id="app-view"></div>
+    </main>
+
+    <footer>
+      <div class="container">
+        <p>&copy; 2026 MediaCenter Electronics. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <!-- Cart Drawer -->
+    <div class="cart-overlay" id="cart-overlay" onclick="toggleCart()"></div>
+    <div class="cart-drawer" id="cart-drawer">
+      <div class="cart-header">
+        <h3>Shopping Cart</h3>
+        <button class="close-cart" onclick="toggleCart()">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+      <div class="cart-items" id="cart-items-container">
+        <!-- Cart items injected here -->
+      </div>
+      <div class="cart-footer">
+        <div class="cart-total">
+          <span>Subtotal:</span>
+          <span id="cart-subtotal">₹0.00</span>
+        </div>
+        <button
+          class="checkout-btn"
+          onclick="alert('Proceeding to secure Indian Payment Gateway...')"
+        >
+          Proceed to Checkout
+        </button>
+      </div>
+    </div>
+
+    <!-- Quick View Modal -->
+    <div class="modal-overlay" id="quick-view-modal">
+      <div class="modal-content">
+        <button class="close-modal" onclick="closeModal()">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+
+        <div class="modal-gallery">
+          <img
+            src=""
+            alt="Main Product"
+            class="main-image"
+            id="modal-main-img"
+          />
+          <div class="thumbnail-list" id="modal-thumbnails">
+            <!-- Thumbnails injected here -->
+          </div>
+        </div>
+
+        <div class="modal-details">
+          <div class="modal-category" id="modal-category">Category</div>
+          <h2 class="modal-title" id="modal-title">Product Name</h2>
+          <div class="modal-price" id="modal-price">₹0.00</div>
+          <p class="modal-description" id="modal-desc">Description</p>
+
+          <ul class="modal-specs" id="modal-specs">
+            <!-- Specs injected here -->
+          </ul>
+
+          <div style="display: flex; gap: 15px; margin-top: 20px">
+            <button
+              class="btn btn-primary"
+              id="modal-add-cart"
+              style="padding: 15px"
+            >
+              Add to Cart
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- JAVASCRIPT (script.js)                     -->
+    <!-- ========================================== -->
+    <script>
+      // --- Indian Currency Formatter ---
+      const formatINR = (amount) => {
+        return new Intl.NumberFormat("en-IN", {
+          style: "currency",
+          currency: "INR",
+          maximumFractionDigits: 0,
+        }).format(amount);
+      };
+
+      // --- Data: Products & Spares (Realistic INR Pricing) ---
+      const inventory = [
+        {
+          id: 1,
+          title: "MacBook Pro 16-inch (M3 Max)",
+          category: "electronics",
+          subcategory: "Laptops",
+          price: 319900, // ₹3,19,900
+          badge: "New",
+          desc: "The ultimate pro laptop. With the M3 Max chip, it delivers massive performance and up to 22 hours of battery life.",
+          images: [
+            "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=600&q=80",
+            "https://images.unsplash.com/photo-1611186871348-b1ce696e52c9?w=600&q=80",
+          ],
+          specs: {
+            Processor: "Apple M3 Max",
+            RAM: "36GB Unified",
+            Storage: "1TB SSD",
+          },
+        },
+        {
+          id: 2,
+          title: 'UltraGear 27" 144Hz Gaming Monitor',
+          category: "electronics",
+          subcategory: "Monitors",
+          price: 35000, // ₹35,000
+          badge: "Hot",
+          desc: "Experience smooth gaming with 1ms response time and 144Hz refresh rate on a stunning IPS display.",
+          images: [
+            "https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=600&q=80",
+            "https://images.unsplash.com/photo-1542751371-adc38448a05e?w=600&q=80",
+          ],
+          specs: {
+            Resolution: "2560 x 1440",
+            "Refresh Rate": "144Hz",
+            Panel: "IPS",
+          },
+        },
+        {
+          id: 3,
+          title: "Keychron K2 Mechanical Keyboard",
+          category: "electronics",
+          subcategory: "Peripherals",
+          price: 12500, // ₹12,500
+          badge: "",
+          desc: "A versatile wireless mechanical keyboard with Mac layout and RGB backlight.",
+          images: [
+            "https://images.unsplash.com/photo-1595225476474-87563907a212?w=600&q=80",
+            "https://images.unsplash.com/photo-1601445638532-3c6f6c3aa1d6?w=600&q=80",
+          ],
+          specs: {
+            Switches: "Gateron Brown",
+            Connectivity: "Bluetooth / Type-C",
+            Layout: "75%",
+          },
+        },
+        {
+          id: 4,
+          title: "Logitech MX Master 3S",
+          category: "electronics",
+          subcategory: "Peripherals",
+          price: 9500, // ₹9,500
+          badge: "",
+          desc: "Advanced wireless mouse with MagSpeed scrolling and ergonomic design.",
+          images: [
+            "https://images.unsplash.com/photo-1615663245857-ac1e6c382101?w=600&q=80",
+          ],
+          specs: {
+            Sensor: "8000 DPI Darkfield",
+            Battery: "70 Days",
+            Connection: "Bluetooth/USB",
+          },
+        },
+        {
+          id: 5,
+          title: "ASUS ROG Strix Z790 Motherboard",
+          category: "spares",
+          subcategory: "Components",
+          price: 42000, // ₹42,000
+          badge: "Premium",
+          desc: "High-end motherboard supporting latest Intel processors with advanced cooling.",
+          images: [
+            "https://images.unsplash.com/photo-1518770660439-4636190af475?w=600&q=80",
+            "https://images.unsplash.com/photo-1555680202-c86f0e12f086?w=600&q=80",
+          ],
+          specs: { Socket: "LGA 1700", Memory: "DDR5", "Form Factor": "ATX" },
+        },
+        {
+          id: 6,
+          title: "NVIDIA RTX 4070 Ti Super",
+          category: "spares",
+          subcategory: "Components",
+          price: 85000, // ₹85,000
+          badge: "Restocked",
+          desc: "Next-gen graphics card for 4K gaming and AI-accelerated rendering.",
+          images: [
+            "https://images.unsplash.com/photo-1587202372634-32705e3bf49c?w=600&q=80",
+            "https://images.unsplash.com/photo-1591488320449-011701bb6704?w=600&q=80",
+          ],
+          specs: { VRAM: "16GB GDDR6X", Cores: "8448 CUDA", Power: "285W" },
+        },
+        {
+          id: 7,
+          title: "Intel Core i7-14700K",
+          category: "spares",
+          subcategory: "Processors",
+          price: 38500, // ₹38,500
+          badge: "",
+          desc: "20-core processor perfect for gaming and multitasking workloads.",
+          images: [
+            "https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?w=600&q=80",
+          ],
+          specs: {
+            Cores: "20 (8P+12E)",
+            "Base Clock": "3.4 GHz",
+            Boost: "5.6 GHz",
+          },
+        },
+        {
+          id: 8,
+          title: "Corsair RM850x Power Supply",
+          category: "spares",
+          subcategory: "Power",
+          price: 13000, // ₹13,000
+          badge: "",
+          desc: "850 Watt 80 PLUS Gold fully modular ATX power supply.",
+          images: [
+            "https://images.unsplash.com/photo-1580584471485-610fb0c8d197?w=600&q=80",
+          ],
+          specs: { Wattage: "850W", Efficiency: "80+ Gold", Modular: "Fully" },
+        },
+      ];
+
+      // --- State Management ---
+      let cart = [];
+      let currentRoute = "home";
+
+      // --- Routing System ---
+      const views = {
+        home: () => renderProductGrid("electronics", "Latest Electronics"),
+        spares: () =>
+          renderProductGrid("spares", "Computer Spares & Components"),
+        service: () => renderServiceForm(),
+      };
+
+      function navigate(route) {
+        currentRoute = route;
+        document
+          .querySelectorAll(".nav-list a")
+          .forEach((el) => el.classList.remove("active"));
+        document.getElementById(`nav-${route}`).classList.add("active");
+
+        const appView = document.getElementById("app-view");
+        appView.innerHTML = views[route]();
+      }
+
+      // --- Render Functions ---
+      function renderProductGrid(categoryFilter, title) {
+        const items = inventory.filter((p) => p.category === categoryFilter);
+
+        let html = `<h1 class="page-title">${title}</h1><div class="product-grid">`;
+
+        items.forEach((item) => {
+          html += `
+                    <div class="product-card">
+                        ${item.badge ? `<span class="product-badge">${item.badge}</span>` : ""}
+                        <div class="product-img-wrapper" onclick="openModal(${item.id})">
+                            <img src="${item.images[0]}" alt="${item.title}">
+                        </div>
+                        <div class="product-category">${item.subcategory}</div>
+                        <h3 class="product-title" onclick="openModal(${item.id})">${item.title}</h3>
+                        <div class="product-price">${formatINR(item.price)}</div>
+                        <div class="product-actions">
+                            <button class="btn btn-primary" onclick="addToCart(${item.id})">Add to Cart</button>
+                            <button class="btn-icon" onclick="openModal(${item.id})"><i class="fa-regular fa-eye"></i></button>
+                        </div>
+                    </div>
+                `;
+        });
+
+        html += `</div>`;
+        return html;
+      }
+
+      function renderServiceForm() {
+        return `
+                <h1 class="page-title">Book Repair Service</h1>
+                <div class="service-form">
+                    <form onsubmit="handleServiceSubmit(event)">
+                        <div class="form-group">
+                            <label>Full Name</label>
+                            <input type="text" required placeholder="Enter your name">
+                        </div>
+                        <div class="form-group">
+                            <label>Phone Number (India)</label>
+                            <input type="tel" required placeholder="+91 XXXXX XXXXX">
+                        </div>
+                        <div class="form-group">
+                            <label>Device Type</label>
+                            <select required>
+                                <option value="">Select Device</option>
+                                <option value="laptop">Laptop / PC</option>
+                                <option value="mobile">Mobile / Tablet</option>
+                                <option value="component">Motherboard / GPU Repair</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Describe the Issue</label>
+                            <textarea required placeholder="Screen broken, battery issue, not turning on..."></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="width:100%; padding: 15px; font-size: 16px;">Request Service Callback</button>
+                    </form>
+                </div>
+            `;
+      }
+
+      // --- Cart Functions ---
+      function toggleCart() {
+        document.getElementById("cart-drawer").classList.toggle("active");
+        document.getElementById("cart-overlay").classList.toggle("active");
+      }
+
+      function addToCart(id) {
+        const product = inventory.find((p) => p.id === id);
+        const existing = cart.find((item) => item.id === id);
+
+        if (existing) {
+          existing.qty++;
+        } else {
+          cart.push({ ...product, qty: 1 });
+        }
+        updateCartUI();
+
+        // Pop open cart on add
+        document.getElementById("cart-drawer").classList.add("active");
+        document.getElementById("cart-overlay").classList.add("active");
+      }
+
+      function updateCartQty(id, delta) {
+        const item = cart.find((i) => i.id === id);
+        if (!item) return;
+
+        item.qty += delta;
+        if (item.qty <= 0) {
+          cart = cart.filter((i) => i.id !== id);
+        }
+        updateCartUI();
+      }
+
+      function updateCartUI() {
+        const container = document.getElementById("cart-items-container");
+        const countBadge = document.getElementById("cart-count-badge");
+        const totalDisplay = document.getElementById("cart-total-display");
+        const subtotalDisplay = document.getElementById("cart-subtotal");
+
+        container.innerHTML = "";
+        let total = 0;
+        let count = 0;
+
+        if (cart.length === 0) {
+          container.innerHTML =
+            '<p style="text-align:center; margin-top: 50px; color: var(--text-muted);">Your cart is empty.</p>';
+        }
+
+        cart.forEach((item) => {
+          total += item.price * item.qty;
+          count += item.qty;
+
+          container.innerHTML += `
+                    <div class="cart-item">
+                        <img src="${item.images[0]}" alt="${item.title}">
+                        <div class="cart-item-details">
+                            <div class="cart-item-title">${item.title}</div>
+                            <div class="cart-item-price">${formatINR(item.price)}</div>
+                            <div class="cart-item-qty">
+                                <button class="qty-btn" onclick="updateCartQty(${item.id}, -1)">-</button>
+                                <span>${item.qty}</span>
+                                <button class="qty-btn" onclick="updateCartQty(${item.id}, 1)">+</button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+        });
+
+        const formattedTotal = formatINR(total);
+        countBadge.innerText = count;
+        totalDisplay.innerText = formattedTotal;
+        subtotalDisplay.innerText = formattedTotal;
+      }
+
+      // --- Quick View Modal Functions ---
+      function openModal(id) {
+        const product = inventory.find((p) => p.id === id);
+
+        document.getElementById("modal-main-img").src = product.images[0];
+        document.getElementById("modal-category").innerText =
+          product.subcategory;
+        document.getElementById("modal-title").innerText = product.title;
+        document.getElementById("modal-price").innerText = formatINR(
+          product.price,
+        );
+        document.getElementById("modal-desc").innerText = product.desc;
+
+        // Build Thumbnails
+        const thumbContainer = document.getElementById("modal-thumbnails");
+        thumbContainer.innerHTML = "";
+        product.images.forEach((imgSrc, index) => {
+          thumbContainer.innerHTML += `
+                    <img src="${imgSrc}" class="thumbnail ${index === 0 ? "active" : ""}" 
+                         onclick="changeModalImage(this, '${imgSrc}')">
+                `;
+        });
+
+        // Build Specs
+        const specsContainer = document.getElementById("modal-specs");
+        specsContainer.innerHTML = "";
+        for (const [key, value] of Object.entries(product.specs)) {
+          specsContainer.innerHTML += `<li><strong>${key}:</strong> ${value}</li>`;
+        }
+
+        // Update Add button
+        document.getElementById("modal-add-cart").onclick = () => {
+          addToCart(product.id);
+          closeModal();
+        };
+
+        document.getElementById("quick-view-modal").classList.add("active");
+      }
+
+      function changeModalImage(element, src) {
+        document.getElementById("modal-main-img").src = src;
+        document
+          .querySelectorAll(".thumbnail")
+          .forEach((t) => t.classList.remove("active"));
+        element.classList.add("active");
+      }
+
+      function closeModal() {
+        document.getElementById("quick-view-modal").classList.remove("active");
+      }
+
+      // Close modal on outside click
+      document
+        .getElementById("quick-view-modal")
+        .addEventListener("click", function (e) {
+          if (e.target === this) closeModal();
+        });
+
+      // --- Service Form Handler ---
+      function handleServiceSubmit(e) {
+        e.preventDefault();
+        alert(
+          "Service request received! Our technician will contact you within 2 hours.",
+        );
+        e.target.reset();
+      }
+
+      // --- Initialize App ---
+      navigate("home");
+    </script>
+  </body>
+</html>
